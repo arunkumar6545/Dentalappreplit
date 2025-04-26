@@ -1,11 +1,19 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { Torus } from "lucide-react";
+import { Torus, Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +40,10 @@ const Header = () => {
     }
   };
 
+  const toggleTheme = () => {
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+  };
+
   return (
     <header className={`fixed w-full bg-background/90 backdrop-blur-sm z-50 ${scrolled ? 'shadow-md' : ''}`}>
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -43,7 +55,7 @@ const Header = () => {
           <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Bright Smile Dental</h1>
         </div>
         
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-6">
           <a 
             onClick={() => scrollToSection('services')} 
             className="text-foreground hover:text-primary font-medium transition-colors duration-300 cursor-pointer"
@@ -68,6 +80,20 @@ const Header = () => {
           >
             Blog
           </a>
+          {mounted && (
+            <button
+              aria-label="Toggle dark mode"
+              type="button"
+              className="rounded-full p-2 bg-background/20 backdrop-blur-sm text-foreground hover:bg-background/40 transition-colors duration-200 focus:outline-none"
+              onClick={toggleTheme}
+            >
+              {resolvedTheme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
+            </button>
+          )}
           <Button
             variant="accent"
             onClick={() => scrollToSection('booking')}
@@ -77,23 +103,29 @@ const Header = () => {
           </Button>
         </nav>
         
-        <button 
-          className="md:hidden text-foreground" 
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x">
-              <path d="M18 6 6 18"/>
-              <path d="m6 6 12 12"/>
-            </svg>
-          ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-menu">
-              <line x1="4" x2="20" y1="12" y2="12"/>
-              <line x1="4" x2="20" y1="6" y2="6"/>
-              <line x1="4" x2="20" y1="18" y2="18"/>
-            </svg>
+        <div className="md:hidden flex items-center gap-2">
+          {mounted && (
+            <button
+              aria-label="Toggle dark mode"
+              type="button"
+              className="rounded-full p-2 bg-background/20 backdrop-blur-sm text-foreground hover:bg-background/40 transition-colors duration-200 focus:outline-none"
+              onClick={toggleTheme}
+            >
+              {resolvedTheme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
+            </button>
           )}
-        </button>
+          <button 
+            className="text-foreground" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
       
       {/* Mobile menu */}

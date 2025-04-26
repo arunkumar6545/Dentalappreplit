@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
+import { ThemeProvider } from "next-themes";
 
 // Add meta information to the document head
 document.title = "Bright Smile Dental Clinic";
@@ -9,4 +10,8 @@ meta.name = 'description';
 meta.content = 'Providing quality dental care in a comfortable and relaxing environment. Your smile is our top priority.';
 document.head.appendChild(meta);
 
-createRoot(document.getElementById("root")!).render(<App />);
+createRoot(document.getElementById("root")!).render(
+  <ThemeProvider attribute="class" defaultTheme="light">
+    <App />
+  </ThemeProvider>
+);
