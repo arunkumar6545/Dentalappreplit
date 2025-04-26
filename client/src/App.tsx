@@ -15,7 +15,6 @@ import DoctorsSection from "@/components/sections/DoctorsSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import BookingSection from "@/components/sections/BookingSection";
 import BlogSection from "@/components/sections/BlogSection";
-import ContactSection from "@/components/sections/ContactSection";
 
 function Home() {
   useEffect(() => {
@@ -32,7 +31,6 @@ function Home() {
       <TestimonialsSection />
       <BookingSection />
       <BlogSection />
-      <ContactSection />
       <Footer />
       <FloatingCTA />
     </div>

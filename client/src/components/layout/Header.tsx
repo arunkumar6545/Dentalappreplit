@@ -35,18 +35,15 @@ const Header = () => {
   return (
     <header className={`fixed w-full bg-white z-50 ${scrolled ? 'shadow-md' : ''}`}>
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center">
+        <div 
+          className="flex items-center cursor-pointer" 
+          onClick={() => scrollToSection('home')}
+        >
           <Torus className="text-primary h-8 w-8 mr-2" />
           <h1 className="text-2xl font-bold text-primary">Bright Smile Dental</h1>
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">
-          <a 
-            onClick={() => scrollToSection('home')} 
-            className="text-foreground hover:text-primary font-medium transition-colors duration-300 cursor-pointer"
-          >
-            Home
-          </a>
           <a 
             onClick={() => scrollToSection('services')} 
             className="text-foreground hover:text-primary font-medium transition-colors duration-300 cursor-pointer"
@@ -70,12 +67,6 @@ const Header = () => {
             className="text-foreground hover:text-primary font-medium transition-colors duration-300 cursor-pointer"
           >
             Blog
-          </a>
-          <a 
-            onClick={() => scrollToSection('contact')} 
-            className="text-foreground hover:text-primary font-medium transition-colors duration-300 cursor-pointer"
-          >
-            Contact
           </a>
           <Button
             variant="accent"
@@ -137,12 +128,6 @@ const Header = () => {
             className="text-foreground hover:text-primary font-medium transition-colors duration-300 cursor-pointer"
           >
             Blog
-          </a>
-          <a 
-            onClick={() => scrollToSection('contact')} 
-            className="text-foreground hover:text-primary font-medium transition-colors duration-300 cursor-pointer"
-          >
-            Contact
           </a>
           <Button
             variant="accent"
