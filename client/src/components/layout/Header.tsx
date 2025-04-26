@@ -100,12 +100,6 @@ const Header = () => {
       <div className={`bg-white w-full shadow-md ${mobileMenuOpen ? 'block' : 'hidden'}`}>
         <div className="container mx-auto px-4 py-3 flex flex-col space-y-4">
           <a 
-            onClick={() => scrollToSection('home')} 
-            className="text-foreground hover:text-primary font-medium transition-colors duration-300 cursor-pointer"
-          >
-            Home
-          </a>
-          <a 
             onClick={() => scrollToSection('services')} 
             className="text-foreground hover:text-primary font-medium transition-colors duration-300 cursor-pointer"
           >
