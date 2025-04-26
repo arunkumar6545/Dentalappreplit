@@ -33,14 +33,14 @@ const Header = () => {
   };
 
   return (
-    <header className={`fixed w-full bg-white z-50 ${scrolled ? 'shadow-md' : ''}`}>
+    <header className={`fixed w-full bg-background/90 backdrop-blur-sm z-50 ${scrolled ? 'shadow-md' : ''}`}>
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <div 
           className="flex items-center cursor-pointer" 
           onClick={() => scrollToSection('home')}
         >
           <Torus className="text-primary h-8 w-8 mr-2" />
-          <h1 className="text-2xl font-bold text-primary">Bright Smile Dental</h1>
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Bright Smile Dental</h1>
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">
@@ -71,7 +71,7 @@ const Header = () => {
           <Button
             variant="accent"
             onClick={() => scrollToSection('booking')}
-            className="rounded-md"
+            className="rounded-full px-6"
           >
             Book Appointment
           </Button>
@@ -97,7 +97,7 @@ const Header = () => {
       </div>
       
       {/* Mobile menu */}
-      <div className={`bg-white w-full shadow-md ${mobileMenuOpen ? 'block' : 'hidden'}`}>
+      <div className={`bg-background/95 backdrop-blur-sm w-full shadow-md ${mobileMenuOpen ? 'block' : 'hidden'}`}>
         <div className="container mx-auto px-4 py-3 flex flex-col space-y-4">
           <a 
             onClick={() => scrollToSection('services')} 
@@ -126,7 +126,7 @@ const Header = () => {
           <Button
             variant="accent"
             onClick={() => scrollToSection('booking')}
-            className="w-full rounded-md"
+            className="w-full rounded-full py-2"
           >
             Book Appointment
           </Button>
