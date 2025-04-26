@@ -7,7 +7,7 @@ import { useTheme } from "next-themes";
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { resolvedTheme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   // Avoid hydration mismatch
@@ -41,7 +41,7 @@ const Header = () => {
   };
 
   const toggleTheme = () => {
-    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
   return (
@@ -80,20 +80,18 @@ const Header = () => {
           >
             Blog
           </a>
-          {mounted && (
-            <button
-              aria-label="Toggle dark mode"
-              type="button"
-              className="rounded-full p-2 bg-background/20 backdrop-blur-sm text-foreground hover:bg-background/40 transition-colors duration-200 focus:outline-none"
-              onClick={toggleTheme}
-            >
-              {resolvedTheme === "dark" ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
-            </button>
-          )}
+          <button
+            aria-label="Toggle dark mode"
+            type="button"
+            className="rounded-full p-2 bg-background/20 backdrop-blur-sm text-foreground hover:bg-background/40 transition-colors duration-200"
+            onClick={toggleTheme}
+          >
+            {mounted && (theme === 'dark' ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            ))}
+          </button>
           <Button
             variant="accent"
             onClick={() => scrollToSection('booking')}
@@ -104,20 +102,18 @@ const Header = () => {
         </nav>
         
         <div className="md:hidden flex items-center gap-2">
-          {mounted && (
-            <button
-              aria-label="Toggle dark mode"
-              type="button"
-              className="rounded-full p-2 bg-background/20 backdrop-blur-sm text-foreground hover:bg-background/40 transition-colors duration-200 focus:outline-none"
-              onClick={toggleTheme}
-            >
-              {resolvedTheme === "dark" ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
-            </button>
-          )}
+          <button
+            aria-label="Toggle dark mode"
+            type="button"
+            className="rounded-full p-2 bg-background/20 backdrop-blur-sm text-foreground hover:bg-background/40 transition-colors duration-200"
+            onClick={toggleTheme}
+          >
+            {mounted && (theme === 'dark' ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            ))}
+          </button>
           <button 
             className="text-foreground" 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
